@@ -1,4 +1,6 @@
-name: POC
+name: Lint, test and build
+
+run-name: Prepare for deploy
 
 on:
   workflow_dispatch:
@@ -14,7 +16,6 @@ permissions:
 
 env:
   NODE_VERSION: 18
-  CHECKOUT_ACTION_VERSION: @v6
 
 jobs:
   lint:
@@ -23,7 +24,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout${{ env.CHECKOUT_ACTION_VERSION }}
+        uses: actions/checkout@v6
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v6
@@ -43,10 +44,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -63,10 +64,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
